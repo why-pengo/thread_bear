@@ -4,7 +4,7 @@ import subprocess
 import threading
 
 
-class FakeDatabase:
+class DataSync:
     def __init__(self):
         self.value = []
         self._lock = threading.Lock()
@@ -41,7 +41,7 @@ def run_check(target):
 
 if __name__ == "__main__":
     pipeline = queue.Queue(maxsize=10)
-    db = FakeDatabase()
+    db = DataSync()
     targets = [{"address": "localhost", "port": "8080", "timeout": "3"},
                {"address": "localhost", "port": "8000", "timeout": "3"},
                {"address": "localhost", "port": "4200", "timeout": "3"},
