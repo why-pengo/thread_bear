@@ -2,6 +2,7 @@ import concurrent.futures
 import queue
 import subprocess
 import threading
+import time
 
 
 class DataSync:
@@ -46,9 +47,12 @@ if __name__ == "__main__":
                {"address": "localhost", "port": "8000", "timeout": "3"},
                {"address": "localhost", "port": "4200", "timeout": "3"},
                {"address": "localhost", "port": "90", "timeout": "3"}, ]
+    start_time = time.time()
     with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
         for target in targets:
             executor.submit(producer, pipeline, run_check, target)
             executor.submit(consumer, db, pipeline)
 
+    duration = time.time() - start_time
+    print(f"\nRan {len(targets)} check(s) in {duration} seconds")
     print(f"db.value = {db.value}")

@@ -24,7 +24,7 @@ def run_all_checks(targets):
 if __name__ == "__main__":
     targets = [{"address": "localhost", "port": "8080", "timeout": "3"},
                {"address": "localhost", "port": "8000", "timeout": "3"},
-               {"address": "localhost", "port": "80", "timeout": "3"},
+               {"address": "localhost", "port": "4200", "timeout": "3"},
                {"address": "localhost", "port": "90", "timeout": "3"}, ]
     start_time = time.time()
     run_all_checks(targets)
